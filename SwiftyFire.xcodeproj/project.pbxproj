@@ -7,19 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A8CEEA9456724EB788964D8C /* Pods_SwiftyFire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72CEDBF1A0A5D09CA00827E7 /* Pods_SwiftyFire.framework */; };
 		C915BC8C22893E330012F9B1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C915BC8B22893E330012F9B1 /* AppDelegate.swift */; };
 		C915BC8E22893E330012F9B1 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C915BC8D22893E330012F9B1 /* RootViewController.swift */; };
 		C915BC9022893E340012F9B1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C915BC8F22893E340012F9B1 /* Assets.xcassets */; };
 		C915BC9322893E340012F9B1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C915BC9122893E340012F9B1 /* LaunchScreen.storyboard */; };
+		C915BC9B228940A50012F9B1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C915BC9A228940A50012F9B1 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		30827CE4A699A3182ABAA67D /* Pods-SwiftyFire.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftyFire.release.xcconfig"; path = "Target Support Files/Pods-SwiftyFire/Pods-SwiftyFire.release.xcconfig"; sourceTree = "<group>"; };
+		72CEDBF1A0A5D09CA00827E7 /* Pods_SwiftyFire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftyFire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C915BC8822893E330012F9B1 /* SwiftyFire.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftyFire.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C915BC8B22893E330012F9B1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C915BC8D22893E330012F9B1 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		C915BC8F22893E340012F9B1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C915BC9222893E340012F9B1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C915BC9422893E340012F9B1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C915BC9A228940A50012F9B1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		E115B5FCD585DADA11E988EC /* Pods-SwiftyFire.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftyFire.debug.xcconfig"; path = "Target Support Files/Pods-SwiftyFire/Pods-SwiftyFire.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -27,17 +33,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A8CEEA9456724EB788964D8C /* Pods_SwiftyFire.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		968C9D1A80FC1D0B43C9B358 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				72CEDBF1A0A5D09CA00827E7 /* Pods_SwiftyFire.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		C915BC7F22893E330012F9B1 = {
 			isa = PBXGroup;
 			children = (
 				C915BC8A22893E330012F9B1 /* SwiftyFire */,
 				C915BC8922893E330012F9B1 /* Products */,
+				FF87E00150F9AA7970E1C698 /* Pods */,
+				968C9D1A80FC1D0B43C9B358 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -57,8 +74,18 @@
 				C915BC8F22893E340012F9B1 /* Assets.xcassets */,
 				C915BC9122893E340012F9B1 /* LaunchScreen.storyboard */,
 				C915BC9422893E340012F9B1 /* Info.plist */,
+				C915BC9A228940A50012F9B1 /* GoogleService-Info.plist */,
 			);
 			path = SwiftyFire;
+			sourceTree = "<group>";
+		};
+		FF87E00150F9AA7970E1C698 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E115B5FCD585DADA11E988EC /* Pods-SwiftyFire.debug.xcconfig */,
+				30827CE4A699A3182ABAA67D /* Pods-SwiftyFire.release.xcconfig */,
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -68,9 +95,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C915BC9722893E340012F9B1 /* Build configuration list for PBXNativeTarget "SwiftyFire" */;
 			buildPhases = (
+				88E45756EC560A246C903638 /* [CP] Check Pods Manifest.lock */,
 				C915BC8422893E330012F9B1 /* Sources */,
 				C915BC8522893E330012F9B1 /* Frameworks */,
 				C915BC8622893E330012F9B1 /* Resources */,
+				1EB09EE4EDA154059E7B41CB /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -119,12 +148,72 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C915BC9B228940A50012F9B1 /* GoogleService-Info.plist in Resources */,
 				C915BC9022893E340012F9B1 /* Assets.xcassets in Resources */,
 				C915BC9322893E340012F9B1 /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1EB09EE4EDA154059E7B41CB /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SwiftyFire/Pods-SwiftyFire-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/BoringSSL-GRPC/openssl_grpc.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-C++/grpcpp.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl_grpc.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpcpp.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpc.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SwiftyFire/Pods-SwiftyFire-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		88E45756EC560A246C903638 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SwiftyFire-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		C915BC8422893E330012F9B1 /* Sources */ = {
@@ -268,6 +357,7 @@
 		};
 		C915BC9822893E340012F9B1 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E115B5FCD585DADA11E988EC /* Pods-SwiftyFire.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -286,6 +376,7 @@
 		};
 		C915BC9922893E340012F9B1 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 30827CE4A699A3182ABAA67D /* Pods-SwiftyFire.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
