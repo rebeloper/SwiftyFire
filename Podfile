@@ -8,5 +8,6 @@ target 'SwiftyFire' do
   # Pods for SwiftyFire
 pod 'Firebase/Core'
 pod 'Firebase/Firestore'
+pod 'TinyConstraints'
 
 end
