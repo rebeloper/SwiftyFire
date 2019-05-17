@@ -27,13 +27,13 @@ class RootViewController: UIViewController {
         ]
     ]
     
-    lazy var button: PurpleButton = {
+    lazy var addButton: PurpleButton = {
         let button = PurpleButton(title: "Add")
-        button.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
+        button.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
         return button
     }()
     
-    @objc fileprivate func buttonTapped() {
+    @objc fileprivate func addButtonTapped() {
         
         // To create or overwrite a single document, use the set() method
         FirestoreReferenceManager.root
@@ -41,7 +41,8 @@ class RootViewController: UIViewController {
             .document("LA")
             .setData(["name": "Los Angeles",
                       "state": "CA",
-                      "country": "USA"]) { (err) in
+                      "country": "USA",
+                      "favorites": [ "food": "Pizza", "color": "Blue", "subject": "recess" ],]) { (err) in
                         if let err = err {
                             print(err.localizedDescription)
                         }
@@ -113,15 +114,55 @@ class RootViewController: UIViewController {
         }
         
     }
+    
+    lazy var updateButton: PurpleButton = {
+        let button = PurpleButton(title: "Update")
+        button.addTarget(self, action: #selector(updateButtonTapped), for: .touchUpInside)
+        return button
+    }()
+    
+    @objc fileprivate func updateButtonTapped() {
+        
+        // To update some fields of a document without overwriting the entire document, use the update() method
+        
+        // If your document contains nested objects, you can use "dot notation" to reference nested fields within the document when you call update()
+        
+        // You can also add server timestamps to specific fields in your documents, to track when an update was received by the server
+        
+        // If your document contains an array field, you can use arrayUnion() and arrayRemove() to add and remove elements. arrayUnion() adds elements to an array but only elements not already present. arrayRemove() removes all instances of each given element.
+        
+        let ref = FirestoreReferenceManager
+            .root
+            .collection(FirebaseKeys.CollectionPath.cities)
+            .document("LA")
+        
+        ref.updateData(["name": "Los Angeles Updated",
+                        "favorites.color": "Green",
+                        "updatedAt": FieldValue.serverTimestamp(),
+                        "regions": FieldValue.arrayRemove(["greater_virginia"])]) { (err) in
+            if let err = err {
+                print(err.localizedDescription)
+            }
+            print("Successfully updated data")
+        }
+        
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         view.backgroundColor = .white
         
-        view.addSubview(button)
-        button.edgesToSuperview(excluding: .bottom, insets: UIEdgeInsets(top: 32, left: 16, bottom: 0, right: 16), usingSafeArea: true)
-        button.height(50)
+        view.addSubview(addButton)
+        view.addSubview(updateButton)
+        
+        addButton.edgesToSuperview(excluding: .bottom, insets: UIEdgeInsets(top: 32, left: 16, bottom: 0, right: 16), usingSafeArea: true)
+        addButton.height(50)
+        
+        updateButton.topToBottom(of: addButton, offset: 8)
+        updateButton.left(to: addButton)
+        updateButton.right(to: addButton)
+        updateButton.height(50)
     }
 
 
