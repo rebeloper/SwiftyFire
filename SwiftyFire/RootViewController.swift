@@ -147,6 +147,107 @@ class RootViewController: UIViewController {
         }
         
     }
+    
+    lazy var incrementButton: PurpleButton = {
+        let button = PurpleButton(title: "Increment")
+        button.addTarget(self, action: #selector(incrementButtonTapped), for: .touchUpInside)
+        return button
+    }()
+    
+    @objc func incrementButtonTapped () {
+        let ref = FirestoreReferenceManager
+            .root
+            .collection(FirebaseKeys.CollectionPath.cities)
+            .document("LA")
+        
+        ref.updateData(["likes": FieldValue.increment(Int64(1))]) { (err) in
+            if let err = err {
+                print(err.localizedDescription)
+            }
+            print("Successfully incremented likes count")
+        }
+        
+        
+    }
+    
+    lazy var createDistributedCounterButton: PurpleButton = {
+        let button = PurpleButton(title: "Create Distributed Counter")
+        button.addTarget(self, action: #selector(createDistributedCounterButtonTapped), for: .touchUpInside)
+        return button
+    }()
+    
+    @objc func createDistributedCounterButtonTapped () {
+        let ref = FirestoreReferenceManager
+            .root
+            .collection(FirebaseKeys.CollectionPath.cities)
+            .document("LA")
+            .collection("likes")
+            .document("likes")
+        
+        let numShards = 10
+        FirestoreDistributedCounter.createCounter(ref: ref, numShards: numShards) { (result) in
+            switch result {
+            case .success(_):
+                print("Successfully created counter with \(numShards) shards")
+            case .failure(let err):
+                print("Failed to create counter with err: \(err.localizedDescription)")
+            }
+        }
+        
+        
+    }
+    
+    lazy var distributedIncrementButton: PurpleButton = {
+        let button = PurpleButton(title: "Distributed Increment")
+        button.addTarget(self, action: #selector(distributedIncrementButtonTapped), for: .touchUpInside)
+        return button
+    }()
+    
+    @objc func distributedIncrementButtonTapped () {
+        let ref = FirestoreReferenceManager
+            .root
+            .collection(FirebaseKeys.CollectionPath.cities)
+            .document("LA")
+            .collection("likes")
+            .document("likes")
+        
+        let incrementValue = 1
+        let numShards = 2
+        FirestoreDistributedCounter.incrementCounter(by: incrementValue, ref: ref, numShards: numShards) { (result) in
+            switch result {
+            case .success(_):
+                print("Successfully incremented counter with value: \(incrementValue) and \(numShards) shards")
+            case .failure(let err):
+                print("Failed to increment counter with err: \(err.localizedDescription)")
+            }
+        }
+        
+    }
+    
+    lazy var getCountButton: PurpleButton = {
+        let button = PurpleButton(title: "Get Count")
+        button.addTarget(self, action: #selector(getCountButtonTapped), for: .touchUpInside)
+        return button
+    }()
+    
+    @objc func getCountButtonTapped () {
+        let ref = FirestoreReferenceManager
+            .root
+            .collection(FirebaseKeys.CollectionPath.cities)
+            .document("LA")
+            .collection("likes")
+            .document("likes")
+        
+        FirestoreDistributedCounter.getCount(ref: ref) { (result) in
+            switch result {
+            case .success(let count):
+                print("Total count is: \(count)")
+            case .failure(let err):
+                print("Failed to get total count with err: \(err.localizedDescription)")
+            }
+        }
+        
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -155,6 +256,10 @@ class RootViewController: UIViewController {
         
         view.addSubview(addButton)
         view.addSubview(updateButton)
+        view.addSubview(incrementButton)
+        view.addSubview(createDistributedCounterButton)
+        view.addSubview(distributedIncrementButton)
+        view.addSubview(getCountButton)
         
         addButton.edgesToSuperview(excluding: .bottom, insets: UIEdgeInsets(top: 32, left: 16, bottom: 0, right: 16), usingSafeArea: true)
         addButton.height(50)
@@ -163,8 +268,27 @@ class RootViewController: UIViewController {
         updateButton.left(to: addButton)
         updateButton.right(to: addButton)
         updateButton.height(50)
+        
+        incrementButton.topToBottom(of: updateButton, offset: 8)
+        incrementButton.left(to: addButton)
+        incrementButton.right(to: addButton)
+        incrementButton.height(50)
+        
+        createDistributedCounterButton.topToBottom(of: incrementButton, offset: 8)
+        createDistributedCounterButton.left(to: addButton)
+        createDistributedCounterButton.right(to: addButton)
+        createDistributedCounterButton.height(50)
+        
+        distributedIncrementButton.topToBottom(of: createDistributedCounterButton, offset: 8)
+        distributedIncrementButton.left(to: addButton)
+        distributedIncrementButton.right(to: addButton)
+        distributedIncrementButton.height(50)
+        
+        getCountButton.topToBottom(of: distributedIncrementButton, offset: 8)
+        getCountButton.left(to: addButton)
+        getCountButton.right(to: addButton)
+        getCountButton.height(50)
     }
-
 
 }
 

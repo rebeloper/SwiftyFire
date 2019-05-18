@@ -13,6 +13,7 @@
 		C915BC9022893E340012F9B1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C915BC8F22893E340012F9B1 /* Assets.xcassets */; };
 		C915BC9322893E340012F9B1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C915BC9122893E340012F9B1 /* LaunchScreen.storyboard */; };
 		C915BC9B228940A50012F9B1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C915BC9A228940A50012F9B1 /* GoogleService-Info.plist */; };
+		C939BA05229024D300974908 /* FirestoreDistributedCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C939BA04229024D300974908 /* FirestoreDistributedCounter.swift */; };
 		C95F2CD8228C145300E7568F /* FirestoreReferenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95F2CD7228C145300E7568F /* FirestoreReferenceManager.swift */; };
 		C95F2CDA228C154100E7568F /* FirebaseKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95F2CD9228C154100E7568F /* FirebaseKeys.swift */; };
 		C95F2CDC228C1A6300E7568F /* PurpleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95F2CDB228C1A6300E7568F /* PurpleButton.swift */; };
@@ -28,6 +29,7 @@
 		C915BC9222893E340012F9B1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C915BC9422893E340012F9B1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C915BC9A228940A50012F9B1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		C939BA04229024D300974908 /* FirestoreDistributedCounter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreDistributedCounter.swift; sourceTree = "<group>"; };
 		C95F2CD7228C145300E7568F /* FirestoreReferenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreReferenceManager.swift; sourceTree = "<group>"; };
 		C95F2CD9228C154100E7568F /* FirebaseKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseKeys.swift; sourceTree = "<group>"; };
 		C95F2CDB228C1A6300E7568F /* PurpleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurpleButton.swift; sourceTree = "<group>"; };
@@ -84,6 +86,7 @@
 				C95F2CD7228C145300E7568F /* FirestoreReferenceManager.swift */,
 				C95F2CD9228C154100E7568F /* FirebaseKeys.swift */,
 				C95F2CDB228C1A6300E7568F /* PurpleButton.swift */,
+				C939BA04229024D300974908 /* FirestoreDistributedCounter.swift */,
 			);
 			path = SwiftyFire;
 			sourceTree = "<group>";
@@ -233,6 +236,7 @@
 			files = (
 				C95F2CDC228C1A6300E7568F /* PurpleButton.swift in Sources */,
 				C95F2CD8228C145300E7568F /* FirestoreReferenceManager.swift in Sources */,
+				C939BA05229024D300974908 /* FirestoreDistributedCounter.swift in Sources */,
 				C915BC8E22893E330012F9B1 /* RootViewController.swift in Sources */,
 				C95F2CDA228C154100E7568F /* FirebaseKeys.swift in Sources */,
 				C915BC8C22893E330012F9B1 /* AppDelegate.swift in Sources */,
