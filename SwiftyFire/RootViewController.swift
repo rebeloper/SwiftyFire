@@ -49,6 +49,19 @@ class RootViewController: UIViewController {
                         print("Successfully set data")
         }
         
+        FirestoreReferenceManager.root
+            .collection(FirebaseKeys.CollectionPath.cities)
+            .document("NY")
+            .setData(["name": "New York",
+                      "state": "NY",
+                      "country": "USA",
+                      "favorites": [ "food": "Pizza", "color": "Blue", "subject": "recess" ],]) { (err) in
+                        if let err = err {
+                            print(err.localizedDescription)
+                        }
+                        print("Successfully set data")
+        }
+        
         // If the document does not exist, it will be created. If the document does exist, its contents will be overwritten with the newly provided data, unless you specify that the data should be merged into the existing document, as follows
         
         let cityData = [
@@ -248,6 +261,88 @@ class RootViewController: UIViewController {
         }
         
     }
+    
+    lazy var commitBatchButton: PurpleButton = {
+        let button = PurpleButton(title: "Commit Batch")
+        button.addTarget(self, action: #selector(commitBatchButtonTapped), for: .touchUpInside)
+        return button
+    }()
+    
+    @objc func commitBatchButtonTapped () {
+        let ref1 = FirestoreReferenceManager
+            .root
+            .collection(FirebaseKeys.CollectionPath.cities)
+            .document("LA")
+        let data1 = ["favorites.color": "Green"]
+        
+        let ref2 = FirestoreReferenceManager
+            .root
+            .collection(FirebaseKeys.CollectionPath.cities)
+            .document("NY")
+        
+        let data2 = ["favorites.color": "Green"]
+        
+        let batch = Firestore.firestore().batch()
+        
+        batch.updateData(data1, forDocument: ref1)
+        batch.updateData(data2, forDocument: ref2)
+        
+        batch.commit { (err) in
+            if let err = err {
+                print(err.localizedDescription)
+            }
+            print("Successfully commited batch")
+        }
+        
+    }
+    
+    lazy var runTransactionButton: PurpleButton = {
+        let button = PurpleButton(title: "Run Transaction")
+        button.addTarget(self, action: #selector(runTransactionButtonTapped), for: .touchUpInside)
+        return button
+    }()
+    
+    @objc func runTransactionButtonTapped () {
+        let ref = FirestoreReferenceManager
+            .root
+            .collection(FirebaseKeys.CollectionPath.cities)
+            .document("LA")
+        
+        let db = Firestore.firestore()
+        
+        db.runTransaction({ (transaction, errorPointer) -> Any? in
+            let trDocument: DocumentSnapshot
+            do {
+                try trDocument = transaction.getDocument(ref)
+            } catch let err {
+                print(err.localizedDescription)
+                return nil
+            }
+            
+            guard let oldName = trDocument.data()?["name"] as? String else {
+                let error = NSError(
+                    domain: "AppErrorDomain",
+                    code: -1,
+                    userInfo: [
+                        NSLocalizedDescriptionKey: "Unable to retrieve population from snapshot \(trDocument)"
+                    ]
+                )
+                errorPointer?.pointee = error
+                return nil
+            }
+            
+            let newName = oldName + " Plus"
+            transaction.updateData(["name": newName], forDocument: ref)
+            
+            return newName
+        }) { (object, err) in
+            if let err = err {
+                print(err.localizedDescription)
+            }
+            print("Successfully ran transaction with object: \(String(describing: object))")
+        }
+        
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -260,6 +355,8 @@ class RootViewController: UIViewController {
         view.addSubview(createDistributedCounterButton)
         view.addSubview(distributedIncrementButton)
         view.addSubview(getCountButton)
+        view.addSubview(commitBatchButton)
+        view.addSubview(runTransactionButton)
         
         addButton.edgesToSuperview(excluding: .bottom, insets: UIEdgeInsets(top: 32, left: 16, bottom: 0, right: 16), usingSafeArea: true)
         addButton.height(50)
@@ -288,6 +385,16 @@ class RootViewController: UIViewController {
         getCountButton.left(to: addButton)
         getCountButton.right(to: addButton)
         getCountButton.height(50)
+        
+        commitBatchButton.topToBottom(of: getCountButton, offset: 8)
+        commitBatchButton.left(to: addButton)
+        commitBatchButton.right(to: addButton)
+        commitBatchButton.height(50)
+        
+        runTransactionButton.topToBottom(of: commitBatchButton, offset: 8)
+        runTransactionButton.left(to: addButton)
+        runTransactionButton.right(to: addButton)
+        runTransactionButton.height(50)
     }
 
 }

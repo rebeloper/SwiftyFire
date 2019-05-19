@@ -27,4 +27,44 @@ class PurpleButton: UIButton {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    /*
+    func a() {
+        let db = Firestore.firestore()
+        
+        db.runTransaction({ (transaction, errorPointer) -> Any? in
+            let trDocument: DocumentSnapshot
+            do {
+                try trDocument = transaction.getDocument(ref)
+            } catch let err as NSError {
+                errorPointer?.pointee = err
+                return nil
+            }
+            
+            guard let oldName = trDocument.data()?["name"] as? String else {
+                let error = NSError(
+                    domain: "AppErrorDomain",
+                    code: -1,
+                    userInfo: [
+                        NSLocalizedDescriptionKey: "Unable to retrieve population from snapshot \(trDocument)"
+                    ]
+                )
+                errorPointer?.pointee = error
+                return nil
+            }
+            
+            let newName = oldName + " Plus"
+            transaction.updateData(["name": newName], forDocument: ref)
+            
+            return newName
+            
+        }) { (object, err) in
+            if let err = err {
+                print("Transaction failed: \(err.localizedDescription)")
+            } else {
+                print("Transaction successfully committed new nema: \(String(describing: object))!")
+            }
+        }
+    }
+ */
 }
